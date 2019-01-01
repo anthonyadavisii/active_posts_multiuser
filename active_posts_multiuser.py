@@ -38,10 +38,11 @@ def active_posts_multiuser_bl_check(userlist):
         gen = a.blog_history()
         for b in gen:
             if b.is_pending():
+			    c = Comment(b.identifier)
                 post_dict = {
                                 'Author': u,
                                 'Comment': '[Comment](https://steemit.com/'+b.identifier+')', 
-                                'Remaining Rewards': b.reward,
+                                'Remaining Rewards': c['pending_payout_value'],
                                 'Blacklisted?': blacklisted
                               }
                 activeposts.append(post_dict)
